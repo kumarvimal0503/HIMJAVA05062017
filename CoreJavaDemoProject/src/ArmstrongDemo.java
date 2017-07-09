@@ -13,7 +13,7 @@ public class ArmstrongDemo {
 			int rem = num % 10;
 			
 			int remExponent = 1;
-			for(int i = 1 ; i <=totalDigit ; i++){ 
+			for(int i = 1 ; i <=totalDigit ; i++){  
 				remExponent *= rem;
 			}
 			result += remExponent;

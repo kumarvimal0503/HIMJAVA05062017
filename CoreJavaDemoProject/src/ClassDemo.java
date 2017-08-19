@@ -6,6 +6,9 @@ public class ClassDemo {
 		aobj.foo = 10;
 		aobj.bobj.bar = 20;
 		aobj.display();
+		
+		System.out.println(aobj.foo);
+		
 	}
 
 }

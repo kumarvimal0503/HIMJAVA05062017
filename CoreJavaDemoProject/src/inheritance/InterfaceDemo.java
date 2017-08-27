@@ -2,11 +2,12 @@ package inheritance;
 
 public class InterfaceDemo {
 	public static void main(String[]args){
-		
+		//Interface Demo
 		XImpl x = new XImpl();
 		x.foo();
 		x.bar();
 		x.doSome();
+		
 		
 		
 		Y y = new XImpl();

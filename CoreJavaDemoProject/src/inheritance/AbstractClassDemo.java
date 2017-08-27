@@ -16,7 +16,7 @@ public class AbstractClassDemo {
 		Penguine penguine = new Penguine();
 		penguine.speak();
 		penguine.layEgg();
-		penguine.fly();
+		//penguine.fly(); // Cannot have fly behaviour
 		
 	}
 	

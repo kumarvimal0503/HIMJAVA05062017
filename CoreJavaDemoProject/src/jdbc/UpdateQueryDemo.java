@@ -1,9 +1,12 @@
 package jdbc;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
 
-public class ConnectionDemo {
-
+public class UpdateQueryDemo {
 	public static void main(String[] args) {
 		Connection conn = null;
 		try {
@@ -18,19 +21,22 @@ public class ConnectionDemo {
 			System.out.println("Connection Created");
 			
 			Statement stmt = conn.createStatement();
+			Scanner s = new Scanner(System.in);
+			System.out.print("Enter book Id to update: ");
+			String book_id = s.nextLine();
 			
-			ResultSet rs = stmt.executeQuery("select * from book");
-			while(rs.next()){
-				
-				String rollNO = rs.getString("book_id");
-				String name =  rs.getString("book_name");
-				
-				System.out.println("Roll NO: "+rollNO);
-				System.out.println("Name: "+name);
-				
-				System.out.println("*******************************************");
-				
-			}
+			System.out.print("Enter book New book Name: ");
+			String book_Name = s.nextLine();
+			
+			
+			
+			
+			String query = "update book set book_name = '"+book_Name+"' where book_id = '"+book_id+"'";
+			
+			stmt.executeUpdate(query);
+			
+			System.out.println("Record Updated");
+			
 			
 		} catch (ClassNotFoundException | SQLException  e) {
 			
@@ -43,9 +49,5 @@ public class ConnectionDemo {
 				e.printStackTrace();
 			}
 		}
-		
-		
-		
 	}
-
 }

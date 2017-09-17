@@ -1,8 +1,12 @@
 package jdbc;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
 
-public class ConnectionDemo {
+public class AlterQueryDemo {
 
 	public static void main(String[] args) {
 		Connection conn = null;
@@ -19,18 +23,15 @@ public class ConnectionDemo {
 			
 			Statement stmt = conn.createStatement();
 			
-			ResultSet rs = stmt.executeQuery("select * from book");
-			while(rs.next()){
-				
-				String rollNO = rs.getString("book_id");
-				String name =  rs.getString("book_name");
-				
-				System.out.println("Roll NO: "+rollNO);
-				System.out.println("Name: "+name);
-				
-				System.out.println("*******************************************");
-				
-			}
+			String query = 
+					"ALTER TABLE book"+
+						" CHANGE COLUMN book_id book_id VARCHAR(10) NOT NULL FIRST,"+
+							" ADD PRIMARY KEY (book_id);";
+			
+			stmt.execute(query);
+			
+			System.out.println("COlumn changed");
+			
 			
 		} catch (ClassNotFoundException | SQLException  e) {
 			
@@ -43,9 +44,6 @@ public class ConnectionDemo {
 				e.printStackTrace();
 			}
 		}
-		
-		
-		
 	}
 
 }

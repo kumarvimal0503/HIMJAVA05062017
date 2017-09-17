@@ -1,8 +1,12 @@
 package jdbc;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
 
-public class ConnectionDemo {
+public class InsertionDemo {
 
 	public static void main(String[] args) {
 		Connection conn = null;
@@ -17,20 +21,18 @@ public class ConnectionDemo {
 			
 			System.out.println("Connection Created");
 			
+			Scanner s = new Scanner(System.in);
+			System.out.print("Enter book Id: ");
+			String book_id = s.nextLine();
+			
+			System.out.print("Enter book Name: ");
+			String book_Name = s.nextLine();
+			
 			Statement stmt = conn.createStatement();
 			
-			ResultSet rs = stmt.executeQuery("select * from book");
-			while(rs.next()){
-				
-				String rollNO = rs.getString("book_id");
-				String name =  rs.getString("book_name");
-				
-				System.out.println("Roll NO: "+rollNO);
-				System.out.println("Name: "+name);
-				
-				System.out.println("*******************************************");
-				
-			}
+			String query = "insert into book values ('"+book_id+"','"+book_Name+"')";
+			
+			stmt.executeUpdate(query);
 			
 		} catch (ClassNotFoundException | SQLException  e) {
 			
@@ -49,3 +51,4 @@ public class ConnectionDemo {
 	}
 
 }
+
